@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "www.zhaoxinkeji.com.inventotyproject"
-        minSdkVersion 16
-        targetSdkVersion 25
+        minSdkVersion 19
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -17,17 +18,79 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support.constraint:constraint-layout:1.1.0'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
     testCompile 'junit:junit:4.12'
-    compile files('libs/gson-2.2.3.jar')
-    compile files('libs/fastjson-1.0.3.jar')
-    compile files('libs/okhttp-3.6.0.jar')
-    compile files('libs/okio-1.10.0.jar')
+
+    compile project(':dbdatabase')
+
+    //google打造的java工具包
+    implementation 'com.google.guava:guava:18.0'
+
+    //okhttp
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+
+    //okhttp日志打印
+    implementation('com.squareup.okhttp3:logging-interceptor:3.9.0') {
+        exclude module: 'okhttp'
+    }
+    implementation('com.squareup.retrofit2:retrofit:2.3.0') {
+        exclude module: 'okhttp'
+    }
+    implementation('com.squareup.retrofit2:adapter-rxjava2:2.3.0') {
+        exclude module: 'retrofit'
+        exclude module: 'rxjava'
+    }
+    implementation('com.squareup.retrofit2:converter-gson:2.3.0') {
+        exclude module: 'retrofit'
+        exclude module: 'gson'
+    }
+    implementation('com.squareup.retrofit2:adapter-rxjava:2.1.0') {
+        exclude module: 'retrofit'
+        exclude module: 'rxjava'
+    }
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    //rxlifecycle 解决rxjava内存泄露
+    implementation('com.trello.rxlifecycle2:rxlifecycle:2.2.1') {
+        exclude module: 'rxjava'
+        exclude module: 'jsr305'
+    }
+    implementation('com.trello.rxlifecycle2:rxlifecycle-components:2.2.1') {
+        exclude module: 'support-annotations'
+        exclude module: 'rxjava'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+    }
+
+    //View注入框架
+    implementation 'com.jakewharton:butterknife:8.4.0'
+
+    //View注入框架注解
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    //eventbus通信
+    //implementation 'de.greenrobot:eventbus:2.4.0'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    //glide图片加载框架
+    implementation 'com.github.bumptech.glide:glide:4.2.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
+
+    //json解析框架
+    implementation 'com.google.code.gson:gson:2.8.2'
 }

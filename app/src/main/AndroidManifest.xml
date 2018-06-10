@@ -3,10 +3,10 @@
           package="www.zhaoxinkeji.com.inventotyproject">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -14,80 +14,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".activity.WelcomeActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="stateAlwaysHidden" >
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <receiver android:name=".utils.BootBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </receiver>
-
-        <activity android:name=".activity.MainActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activity.LoginActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activity.SettingActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activity.InventoryActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activity.CheckReceiveActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activity.ReturnGoodsActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activity.PdGoodsActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.YsGoodsActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.ThGoodsActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.ModifyNumActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="stateAlwaysHidden"
-                  android:theme="@android:style/Theme.Translucent"/>
-        <activity android:name=".activity.DialogActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="stateAlwaysHidden"
-                  android:theme="@android:style/Theme.Translucent"/>
-        <activity android:name=".activity.LoginSetActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name=".activity.SetServerActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="stateAlwaysHidden"/>
     </application>
 
 </manifest>
