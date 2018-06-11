@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.WindowManager;
 
 import com.trello.rxlifecycle2.android.ActivityEvent;
 
@@ -18,9 +16,9 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.Subject;
-import www.zhaoxinkeji.com.inventotyproject.MainActivity;
 import www.zhaoxinkeji.com.inventotyproject.app.EventBusTags;
 import www.zhaoxinkeji.com.inventotyproject.lifecycle.ActivityLifecycleable;
+import www.zhaoxinkeji.com.inventotyproject.module.main.MainActivity;
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IActivity<P>, ActivityLifecycleable {
 
@@ -28,10 +26,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     protected P mPresenter;
     private Unbinder unbinder;
-
-    private boolean mIsAddedView;//标记是否已经添加了护眼蒙版
-    private WindowManager mWindowManager = null;//标记窗口管理器
-    private View mNightView = null;//标记护眼蒙版View
 
     @NonNull
     @Override

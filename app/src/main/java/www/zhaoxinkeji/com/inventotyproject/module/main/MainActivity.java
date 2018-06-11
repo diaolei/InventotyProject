@@ -1,7 +1,8 @@
-package www.zhaoxinkeji.com.inventotyproject;
+package www.zhaoxinkeji.com.inventotyproject.module.main;
 
 import android.os.Bundle;
 
+import www.zhaoxinkeji.com.inventotyproject.R;
 import www.zhaoxinkeji.com.inventotyproject.base.BaseActivity;
 import www.zhaoxinkeji.com.inventotyproject.base.IPresenter;
 
