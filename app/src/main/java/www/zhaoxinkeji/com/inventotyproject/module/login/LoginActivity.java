@@ -72,6 +72,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 break;
             case R.id.btn_logout://退出
                 showMessage("退出");
+                finish();
                 break;
             case R.id.btn_net://网络配置
                 showMessage("网络配置");
