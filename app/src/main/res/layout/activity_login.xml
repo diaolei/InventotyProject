@@ -105,7 +105,7 @@
             android:layout_below="@id/btn_logout"
             android:layout_margin="10dp"
             android:layout_toRightOf="@id/btn_login"
-            android:text="登陆"/>
+            android:text="wifi配置"/>
     </RelativeLayout>
 
 

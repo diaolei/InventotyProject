@@ -13,17 +13,17 @@ import org.greenrobot.greendao.annotation.Generated;
  */
 
 @Entity
-public class ArticleEntity {
+public class BaseDataEntity {
 
     private Long articleId;//纸条id
 
-    @Generated(hash = 1722848044)
-    public ArticleEntity(Long articleId) {
+    @Generated(hash = 182331968)
+    public BaseDataEntity(Long articleId) {
         this.articleId = articleId;
     }
 
-    @Generated(hash = 1301498493)
-    public ArticleEntity() {
+    @Generated(hash = 76996034)
+    public BaseDataEntity() {
     }
 
     public Long getArticleId() {
@@ -33,6 +33,7 @@ public class ArticleEntity {
     public void setArticleId(Long articleId) {
         this.articleId = articleId;
     }
+
 
 }
 

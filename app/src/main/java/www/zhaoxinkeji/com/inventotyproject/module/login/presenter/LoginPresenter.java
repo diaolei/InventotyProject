@@ -1,6 +1,7 @@
-package www.zhaoxinkeji.com.inventotyproject.module.login;
+package www.zhaoxinkeji.com.inventotyproject.module.login.presenter;
 
 import www.zhaoxinkeji.com.inventotyproject.base.BasePresenter;
+import www.zhaoxinkeji.com.inventotyproject.module.login.conract.LoginContract;
 
 /**
  * <pre>

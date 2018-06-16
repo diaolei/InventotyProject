@@ -1,4 +1,4 @@
-package www.zhaoxinkeji.com.inventotyproject.module.login;
+package www.zhaoxinkeji.com.inventotyproject.module.login.conract;
 
 import www.zhaoxinkeji.com.inventotyproject.base.IModel;
 import www.zhaoxinkeji.com.inventotyproject.base.IView;

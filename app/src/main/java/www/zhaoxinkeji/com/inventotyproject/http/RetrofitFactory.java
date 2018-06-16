@@ -7,9 +7,7 @@ import www.zhaoxinkeji.com.inventotyproject.http.GsonConverterFactory.CustomGson
 import www.zhaoxinkeji.com.inventotyproject.http.retrofiturlmanager.RetrofitUrlManager;
 
 import static www.zhaoxinkeji.com.inventotyproject.app.Api.APP_JAVA_DOMAIN;
-import static www.zhaoxinkeji.com.inventotyproject.app.Api.APP_JAVA_DOMAIN_LOCAL_TEST;
 import static www.zhaoxinkeji.com.inventotyproject.app.Api.APP_JAVA_DOMAIN_TEST;
-import static www.zhaoxinkeji.com.inventotyproject.app.Api.JAVA_DOMAIN_LOCAL_TEST;
 import static www.zhaoxinkeji.com.inventotyproject.app.Api.JAVA_DOMAIN_NAME;
 import static www.zhaoxinkeji.com.inventotyproject.app.Api.JAVA_DOMAIN_TEST;
 
@@ -23,7 +21,6 @@ public class RetrofitFactory {
         //将每个 BaseUrl 进行初始化,运行时可以随时改变 DOMAIN_NAME 对应的值,从而达到改变 BaseUrl 的效果
         RetrofitUrlManager.getInstance().putDomain(JAVA_DOMAIN_NAME, APP_JAVA_DOMAIN);
         RetrofitUrlManager.getInstance().putDomain(JAVA_DOMAIN_TEST, APP_JAVA_DOMAIN_TEST); //测试环境
-        RetrofitUrlManager.getInstance().putDomain(JAVA_DOMAIN_LOCAL_TEST, APP_JAVA_DOMAIN_LOCAL_TEST); //测试环境
 
 
         OkHttpClient mOkHttpClient = RetrofitUrlManager.getInstance().with(new OkHttpClient.Builder()) //RetrofitUrlManager 初始化

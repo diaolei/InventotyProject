@@ -1,5 +1,6 @@
-package www.zhaoxinkeji.com.inventotyproject.module.login;
+package www.zhaoxinkeji.com.inventotyproject.module.login.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import www.zhaoxinkeji.com.inventotyproject.R;
 import www.zhaoxinkeji.com.inventotyproject.base.BaseActivity;
+import www.zhaoxinkeji.com.inventotyproject.module.login.conract.LoginContract;
+import www.zhaoxinkeji.com.inventotyproject.module.login.presenter.LoginPresenter;
 import www.zhaoxinkeji.com.inventotyproject.utils.RxToast;
 
 /**
@@ -56,7 +59,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void showMessage(String message) {
-        RxToast.info(message);
+        RxToast.showToast(message);
     }
 
     @Override
@@ -75,7 +78,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 finish();
                 break;
             case R.id.btn_net://网络配置
-                showMessage("网络配置");
+                Intent intent = new Intent(this, NetSettingActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btn_wifi://wifi配置
                 showMessage("wifi配置");

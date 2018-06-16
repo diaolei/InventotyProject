@@ -10,24 +10,24 @@ package www.zhaoxinkeji.com.inventotyproject.model.entity;
  */
 public class JavaResponse<T> {
 
-    private int status;//状态码
-    private String msg;//提示信息
+    private int errcode;//状态码
+    private String errmsg;//提示信息
     private T data;//返回数据
 
-    public int getStatus() {
-        return status;
+    public int getErrcode() {
+        return errcode;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setErrcode(int errcode) {
+        this.errcode = errcode;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getErrmsg() {
+        return errmsg;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setErrmsg(String errmsg) {
+        this.errmsg = errmsg;
     }
 
     public T getData() {
@@ -41,8 +41,8 @@ public class JavaResponse<T> {
     @Override
     public String toString() {
         return "JavaResponse{" +
-                "status=" + status +
-                ", msg='" + msg + '\'' +
+                "errcode=" + errcode +
+                ", errmsg='" + errmsg + '\'' +
                 ", data=" + data +
                 '}';
     }
@@ -53,6 +53,6 @@ public class JavaResponse<T> {
      * @return 失败返回true, 成功返回false
      */
     public boolean isSuccess() {
-        return status == 200;
+        return errcode == 0;
     }
 }
