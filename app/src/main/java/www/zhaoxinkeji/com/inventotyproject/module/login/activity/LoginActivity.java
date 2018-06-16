@@ -2,6 +2,7 @@ package www.zhaoxinkeji.com.inventotyproject.module.login.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,10 +72,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_login://登录
-                showMessage("登录");
+                mPresenter.login(mEtUsername.getText().toString().trim(), mEtUserPassword.getText().toString().trim());
                 break;
             case R.id.btn_logout://退出
-                showMessage("退出");
                 finish();
                 break;
             case R.id.btn_net://网络配置
@@ -82,8 +82,22 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 startActivity(intent);
                 break;
             case R.id.btn_wifi://wifi配置
-                showMessage("wifi配置");
+                intent = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
+                startActivity(intent);
                 break;
         }
     }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (event.getKeyCode()) {
+                case KeyEvent.KEYCODE_BACK:
+
+                    break;
+            }
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
 }

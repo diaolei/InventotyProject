@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     >
 
     <GridView
         android:id="@+id/menu_gv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="3"/>
+        android:layout_weight="1"
+        android:numColumns="3"
+        />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/download_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_selector"
+            android:text="基础数据下载"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_selector"
+            android:text="返回"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+    </LinearLayout>
+
+</LinearLayout>

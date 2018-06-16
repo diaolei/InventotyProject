@@ -19,7 +19,7 @@ import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.Subject;
 import www.zhaoxinkeji.com.inventotyproject.app.EventBusTags;
 import www.zhaoxinkeji.com.inventotyproject.lifecycle.ActivityLifecycleable;
-import www.zhaoxinkeji.com.inventotyproject.module.main.MainActivity;
+import www.zhaoxinkeji.com.inventotyproject.module.main.activity.MainActivity;
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IActivity<P>, ActivityLifecycleable {
 

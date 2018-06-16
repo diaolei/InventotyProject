@@ -8,6 +8,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.QueryMap;
 import www.zhaoxinkeji.com.inventotyproject.app.Api;
 import www.zhaoxinkeji.com.inventotyproject.model.entity.JavaResponse;
+import www.zhaoxinkeji.com.inventotyproject.module.login.bean.UserBean;
 
 import static www.zhaoxinkeji.com.inventotyproject.app.Api.JAVA_DOMAIN_TEST;
 import static www.zhaoxinkeji.com.inventotyproject.http.retrofiturlmanager.RetrofitUrlManager.DOMAIN_NAME_HEADER;
@@ -24,4 +25,9 @@ public interface BaseService {
     @Headers({DOMAIN_NAME_HEADER + JAVA_DOMAIN_TEST})
     @GET(Api.BASE_URL)
     Observable<JavaResponse> testNetSetting(@QueryMap Map<String, Object> params);
+
+    @Headers({DOMAIN_NAME_HEADER + JAVA_DOMAIN_TEST})
+    @GET(Api.BASE_URL)
+    Observable<JavaResponse<UserBean>> login(@QueryMap Map<String, Object> params);
+
 }
