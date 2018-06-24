@@ -9,6 +9,11 @@ public class AppConstant {
      */
     public static final Boolean IS_DEBUG = true;
 
+    /**
+     * 数据库名
+     */
+    public static final String DB_NAME = "zxkj_db";
+
 
     //网络测试的Action
     public static final String NetSettingAction = "CheckNet";

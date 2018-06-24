@@ -20,4 +20,14 @@ public class JavaRequestHelper {
         params.put("password", password);
         return params;
     }
+
+    public static Map<String, Object> baseDataDownload(long userID, long storeID, int baseType) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("action", "DownloadBaseInfo");
+        params.put("cid", 1000);
+        params.put("userID", userID);
+        params.put("storeID", storeID);
+        params.put("baseType", baseType);
+        return params;
+    }
 }

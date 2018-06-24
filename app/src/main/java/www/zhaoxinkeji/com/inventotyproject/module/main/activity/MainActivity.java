@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.download_btn://基础数据下载
+                mPresenter.baseDataDownload();
                 break;
             case R.id.back_btn://返回按钮
                 break;

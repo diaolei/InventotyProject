@@ -40,8 +40,8 @@ final class CustomGsonResponseBodyConverter<T> implements Converter<ResponseBody
     @Override
     public T convert(ResponseBody value) throws IOException {
         String response = value.string();
-        String replace = response.replace("(", "").replace(")", "");
-        JavaResponse javaResponse = gson.fromJson(replace, JavaResponse.class);
+        //String replace = response.replace("(", "").replace(")", "");
+        JavaResponse javaResponse = gson.fromJson(response, JavaResponse.class);
         if (!javaResponse.isSuccess()) {
             value.close();
             throw new ApiException(javaResponse.getErrcode(), javaResponse.getErrmsg());

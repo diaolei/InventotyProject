@@ -6,6 +6,7 @@ import android.content.Context;
 import www.zhaoxinkeji.com.inventotyproject.http.imageloader.ImageLoader;
 import www.zhaoxinkeji.com.inventotyproject.http.imageloader.glide.ImageConfigImpl;
 import www.zhaoxinkeji.com.inventotyproject.lifecycle.ActivityLifecycleForRxLifecycle;
+import www.zhaoxinkeji.com.inventotyproject.manager.GreenDaoManager;
 
 
 public class BaseApplication extends Application {
@@ -23,6 +24,8 @@ public class BaseApplication extends Application {
         super.onCreate();
         //保存本地变量
         instance = this;
+
+        GreenDaoManager.getInstance();
 
         //注册RxLifecycle
         registerActivityLifecycleCallbacks(mActivityLifecycleForRxLifecycle);

@@ -1,20 +1,24 @@
 package www.zhaoxinkeji.com.inventotyproject.module.main.presenter;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import www.zhaoxinkeji.com.dbdatabase.entity.BaseDataEntity;
 import www.zhaoxinkeji.com.inventotyproject.R;
 import www.zhaoxinkeji.com.inventotyproject.app.AppConstant;
 import www.zhaoxinkeji.com.inventotyproject.base.BasePresenter;
+import www.zhaoxinkeji.com.inventotyproject.http.ErrorHandlerObserver;
+import www.zhaoxinkeji.com.inventotyproject.manager.BaseDataDaoManager;
+import www.zhaoxinkeji.com.inventotyproject.model.entity.JavaResponse;
+import www.zhaoxinkeji.com.inventotyproject.module.main.adapter.GridViewAdapter;
 import www.zhaoxinkeji.com.inventotyproject.module.main.bean.MainItemBean;
 import www.zhaoxinkeji.com.inventotyproject.module.main.contract.MainContract;
+import www.zhaoxinkeji.com.inventotyproject.module.main.model.MainModel;
+import www.zhaoxinkeji.com.inventotyproject.utils.LogUtil;
+import www.zhaoxinkeji.com.inventotyproject.utils.RxLifecycleUtils;
 import www.zhaoxinkeji.com.inventotyproject.utils.SharePreferanceUtil;
 
 /**
@@ -29,7 +33,7 @@ import www.zhaoxinkeji.com.inventotyproject.utils.SharePreferanceUtil;
 public class MainPresenter extends BasePresenter<MainContract.Model, MainContract.View> {
 
     public MainPresenter(MainContract.View rootView) {
-        super(rootView);
+        super(new MainModel(), rootView);
     }
 
     /**
@@ -72,54 +76,45 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
      * @param list
      */
     public void initGridView(GridView menuGv, List<MainItemBean> list) {
-        menuGv.setAdapter(new GridViewAdapter(list));
+        menuGv.setAdapter(new GridViewAdapter(mContext, list));
     }
 
+    /**
+     * 基础数据下载
+     */
+    public void baseDataDownload() {
+        //获取存储在本地的值
+        long userID = (long) SharePreferanceUtil.getSpUtil().get_sp(AppConstant.USER_ID, 0l);
+        long storeID = (long) SharePreferanceUtil.getSpUtil().get_sp(AppConstant.STORE_ID, 0l);
+        int baseType = (int) SharePreferanceUtil.getSpUtil().get_sp(AppConstant.USER_TYPE, 0);
 
-    class GridViewAdapter extends BaseAdapter {
-        private List<MainItemBean> list;
+        //下载之前先清空基础数据下载表,防止数据重复
+        if (BaseDataDaoManager.deleteAll()) {
+            mModel.baseDataDownload(userID, storeID, baseType)
+                    .subscribeOn(Schedulers.io())
+                    .doOnSubscribe(disposable -> {
+                        mRootView.showLoading();
+                    }).subscribeOn(AndroidSchedulers.mainThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doFinally(() -> {
+                        mRootView.hideLoading();
 
-        public GridViewAdapter(List<MainItemBean> list) {
-            this.list = list;
-        }
-
-        @Override
-        public int getCount() {
-            return list.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return list.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder = null;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.item_main, parent, false);
-                holder = new ViewHolder();
-                holder.main_iv = convertView.findViewById(R.id.main_iv);
-                holder.main_tv = (TextView) convertView.findViewById(R.id.main_tv);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
-
-            holder.main_iv.setImageResource(list.get(position).getResID());
-            holder.main_tv.setText(list.get(position).getIconName());
-
-            return null;
-        }
-
-        class ViewHolder {
-            private ImageView main_iv;
-            private TextView main_tv;
+                        List<BaseDataEntity> baseDataEntities = BaseDataDaoManager.queryAllFromAsc();
+                        LogUtil.v("数据库获取到的基础下载的数据是" + baseDataEntities);
+                    })
+                    .compose(RxLifecycleUtils.bindToLifecycle(mRootView))//使用 Rxlifecycle,使 Disposable 和 Activity 一起销毁
+                    .subscribe(new ErrorHandlerObserver<JavaResponse<List<BaseDataEntity>>>() {
+                        @Override
+                        public void onNext(JavaResponse<List<BaseDataEntity>> listJavaResponse) {
+                            if (listJavaResponse != null
+                                    && listJavaResponse.getData() != null
+                                    && !listJavaResponse.getData().isEmpty()) {
+                                LogUtil.v("基础下载的数据是" + listJavaResponse.getData());
+                                // TODO: 2018/6/24 数据库存储
+                                BaseDataDaoManager.insertData(listJavaResponse.getData());
+                            }
+                        }
+                    });
         }
     }
 }

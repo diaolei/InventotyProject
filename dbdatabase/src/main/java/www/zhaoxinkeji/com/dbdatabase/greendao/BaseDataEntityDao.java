@@ -24,7 +24,9 @@ public class BaseDataEntityDao extends AbstractDao<BaseDataEntity, Void> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property ArticleId = new Property(0, Long.class, "articleId", false, "ARTICLE_ID");
+        public final static Property Id = new Property(0, Long.class, "id", false, "ID");
+        public final static Property Code = new Property(1, String.class, "code", false, "CODE");
+        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
     }
 
 
@@ -40,7 +42,9 @@ public class BaseDataEntityDao extends AbstractDao<BaseDataEntity, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"BASE_DATA_ENTITY\" (" + //
-                "\"ARTICLE_ID\" INTEGER);"); // 0: articleId
+                "\"ID\" INTEGER," + // 0: id
+                "\"CODE\" TEXT," + // 1: code
+                "\"NAME\" TEXT);"); // 2: name
     }
 
     /** Drops the underlying database table. */
@@ -53,9 +57,19 @@ public class BaseDataEntityDao extends AbstractDao<BaseDataEntity, Void> {
     protected final void bindValues(DatabaseStatement stmt, BaseDataEntity entity) {
         stmt.clearBindings();
  
-        Long articleId = entity.getArticleId();
-        if (articleId != null) {
-            stmt.bindLong(1, articleId);
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
+ 
+        String code = entity.getCode();
+        if (code != null) {
+            stmt.bindString(2, code);
+        }
+ 
+        String name = entity.getName();
+        if (name != null) {
+            stmt.bindString(3, name);
         }
     }
 
@@ -63,9 +77,19 @@ public class BaseDataEntityDao extends AbstractDao<BaseDataEntity, Void> {
     protected final void bindValues(SQLiteStatement stmt, BaseDataEntity entity) {
         stmt.clearBindings();
  
-        Long articleId = entity.getArticleId();
-        if (articleId != null) {
-            stmt.bindLong(1, articleId);
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
+ 
+        String code = entity.getCode();
+        if (code != null) {
+            stmt.bindString(2, code);
+        }
+ 
+        String name = entity.getName();
+        if (name != null) {
+            stmt.bindString(3, name);
         }
     }
 
@@ -77,14 +101,18 @@ public class BaseDataEntityDao extends AbstractDao<BaseDataEntity, Void> {
     @Override
     public BaseDataEntity readEntity(Cursor cursor, int offset) {
         BaseDataEntity entity = new BaseDataEntity( //
-            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0) // articleId
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // code
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // name
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, BaseDataEntity entity, int offset) {
-        entity.setArticleId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
+        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
+        entity.setCode(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
      }
     
     @Override

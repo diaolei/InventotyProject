@@ -33,12 +33,12 @@ public abstract class ErrorHandlerObserver<T> implements Observer<T> {
         }
         if (e instanceof MalformedJsonException) {
             RxToast.showToast("服务器返回JSON格式错误");
-            _onError("连接超时！请检查您的网络设置");
+            _onError("服务器返回JSON格式错误");
             return;
         }
         if (e instanceof UnknownHostException) {
             RxToast.showToast("数据获取失败，请检查您的网络");
-            _onError("连接超时！请检查您的网络设置");
+            _onError("数据获取失败，请检查您的网络");
             return;
         }
         //添加了自定义错误收集
