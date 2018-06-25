@@ -3,31 +3,30 @@ package www.zhaoxinkeji.com.dbdatabase.entity;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 
-
 /**
  * <pre>
- *     author : LinRuo
- *     time   : 2018/6/24
- *     desc   : 基础数据下载表
+ *     author : wanlinruo
+ *     time   : 2018/06/25
+ *     desc   : 单据转换表
  *     version: 1.0
  * </pre>
  */
 @Entity
-public class BaseDataEntity {
+public class BillRuleEntity {
 
-    private Long id;//仓库ID
-    private String code;//仓库编号
-    private String name;//仓库名称
+    private Long id;//单据ID
+    private String code;//单据代码
+    private String name;//单据名称
 
-    @Generated(hash = 1804947092)
-    public BaseDataEntity(Long id, String code, String name) {
+    @Generated(hash = 957558600)
+    public BillRuleEntity(Long id, String code, String name) {
         this.id = id;
         this.code = code;
         this.name = name;
     }
 
-    @Generated(hash = 76996034)
-    public BaseDataEntity() {
+    @Generated(hash = 68998699)
+    public BillRuleEntity() {
     }
 
     public Long getId() {
@@ -56,12 +55,10 @@ public class BaseDataEntity {
 
     @Override
     public String toString() {
-        return "BaseDataEntity{" +
+        return "BillRuleEntity{" +
                 "id=" + id +
                 ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }
 }
-
-

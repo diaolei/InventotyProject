@@ -7,8 +7,12 @@ import com.github.yuweiguocn.library.greendao.MigrationHelper;
 
 import org.greenrobot.greendao.database.Database;
 
-import www.zhaoxinkeji.com.dbdatabase.greendao.BaseDataEntityDao;
+import www.zhaoxinkeji.com.dbdatabase.greendao.AffairEntityDao;
+import www.zhaoxinkeji.com.dbdatabase.greendao.BillRuleEntityDao;
 import www.zhaoxinkeji.com.dbdatabase.greendao.DaoMaster;
+import www.zhaoxinkeji.com.dbdatabase.greendao.DistributorEntityDao;
+import www.zhaoxinkeji.com.dbdatabase.greendao.ProductEntityDao;
+import www.zhaoxinkeji.com.dbdatabase.greendao.StorageRoomEntityDao;
 
 /**
  * <pre>
@@ -26,15 +30,20 @@ public class MySQLiteOpenHelper extends DaoMaster.DevOpenHelper {
     @Override
     public void onUpgrade(Database db, int oldVersion, int newVersion) {
         MigrationHelper.migrate(db, new MigrationHelper.ReCreateAllTableListener() {
-            @Override
-            public void onCreateAllTables(Database db, boolean ifNotExists) {
-                DaoMaster.createAllTables(db, ifNotExists);
-            }
+                    @Override
+                    public void onCreateAllTables(Database db, boolean ifNotExists) {
+                        DaoMaster.createAllTables(db, ifNotExists);
+                    }
 
-            @Override
-            public void onDropAllTables(Database db, boolean ifExists) {
-                DaoMaster.dropAllTables(db, ifExists);
-            }
-        }, BaseDataEntityDao.class);
+                    @Override
+                    public void onDropAllTables(Database db, boolean ifExists) {
+                        DaoMaster.dropAllTables(db, ifExists);
+                    }
+                },
+                ProductEntityDao.class,
+                StorageRoomEntityDao.class,
+                DistributorEntityDao.class,
+                BillRuleEntityDao.class,
+                AffairEntityDao.class);
     }
 }

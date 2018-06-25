@@ -2,22 +2,22 @@ package www.zhaoxinkeji.com.inventotyproject.manager;
 
 import java.util.List;
 
-import www.zhaoxinkeji.com.dbdatabase.entity.BaseDataEntity;
-import www.zhaoxinkeji.com.dbdatabase.greendao.BaseDataEntityDao;
+import www.zhaoxinkeji.com.dbdatabase.entity.DistributorEntity;
+import www.zhaoxinkeji.com.dbdatabase.greendao.DistributorEntityDao;
 import www.zhaoxinkeji.com.inventotyproject.utils.LogUtil;
 
 /**
  * <pre>
- *     author : LinRuo
- *     time   : 2018/04/08
- *     desc   : 纸条表操作类
+ *     author : wanlinruo
+ *     time   : 2018/06/25
+ *     desc   : 下级经销商表操作类
  *     version: 1.0
  * </pre>
  */
 
-public class BaseDataDaoManager {
+public class DistributorEntityDaoManager {
 
-    private static final String TAG = BaseDataDaoManager.class.getSimpleName();
+    private static final String TAG = DistributorEntityDaoManager.class.getSimpleName();
 
     /**
      * 单个添加
@@ -25,10 +25,10 @@ public class BaseDataDaoManager {
      * @param entity 需要添加的实体
      * @return 是否成功
      */
-    public static boolean insertData(BaseDataEntity entity) {
+    public static boolean insertData(DistributorEntity entity) {
         boolean flag = false;
         try {
-            flag = GreenDaoManager.getInstance().getNewSession().getBaseDataEntityDao().insertOrReplace(entity) != -1;
+            flag = GreenDaoManager.getInstance().getNewSession().getDistributorEntityDao().insertOrReplace(entity) != -1;
         } catch (Exception e) {
             LogUtil.v(TAG, e.toString());
         }
@@ -41,10 +41,10 @@ public class BaseDataDaoManager {
      * @param list 需要添加的列表
      * @return 是否成功
      */
-    public static boolean insertData(List<BaseDataEntity> list) {
+    public static boolean insertData(List<DistributorEntity> list) {
         boolean flag = false;
         try {
-            GreenDaoManager.getInstance().getNewSession().getBaseDataEntityDao().insertOrReplaceInTx(list);
+            GreenDaoManager.getInstance().getNewSession().getDistributorEntityDao().insertOrReplaceInTx(list);
             flag = true;
         } catch (Exception e) {
             LogUtil.v(TAG, e.toString());
@@ -58,10 +58,10 @@ public class BaseDataDaoManager {
      * @param entity 需要删除的数据
      * @return 是否成功
      */
-    public static boolean deleteData(BaseDataEntity entity) {
+    public static boolean deleteData(DistributorEntity entity) {
         boolean flag = false;
         try {
-            GreenDaoManager.getInstance().getNewSession().getBaseDataEntityDao().delete(entity);
+            GreenDaoManager.getInstance().getNewSession().getDistributorEntityDao().delete(entity);
             flag = true;
         } catch (Exception e) {
             LogUtil.v(TAG, e.toString());
@@ -75,14 +75,14 @@ public class BaseDataDaoManager {
      * @param list 需要删除的列表
      * @return 是否成功
      */
-    public static boolean deleteData(List<BaseDataEntity> list) {
+    public static boolean deleteData(List<DistributorEntity> list) {
         if (null == list || list.size() <= 0) {
             return false;
         }
 
         boolean flag = false;
         try {
-            GreenDaoManager.getInstance().getNewSession().getBaseDataEntityDao().deleteInTx(list);
+            GreenDaoManager.getInstance().getNewSession().getDistributorEntityDao().deleteInTx(list);
             flag = true;
         } catch (Exception e) {
             LogUtil.v(TAG, e.toString());
@@ -98,7 +98,7 @@ public class BaseDataDaoManager {
     public static boolean deleteAll() {
         boolean flag = false;
         try {
-            GreenDaoManager.getInstance().getNewSession().getBaseDataEntityDao().deleteAll();
+            GreenDaoManager.getInstance().getNewSession().getProductEntityDao().deleteAll();
             flag = true;
         } catch (Exception e) {
             LogUtil.v(TAG, e.toString());
@@ -112,10 +112,10 @@ public class BaseDataDaoManager {
      * @param entity 需要更新的数据实体
      * @return 是否成功
      */
-    public static boolean updateData(BaseDataEntity entity) {
+    public static boolean updateData(DistributorEntity entity) {
         boolean flag = false;
         try {
-            GreenDaoManager.getInstance().getNewSession().getBaseDataEntityDao().update(entity);
+            GreenDaoManager.getInstance().getNewSession().getDistributorEntityDao().update(entity);
             flag = true;
         } catch (Exception e) {
             LogUtil.v(TAG, e.toString());
@@ -129,14 +129,14 @@ public class BaseDataDaoManager {
      * @param list 需要更新的列表数据
      * @return 是否成功
      */
-    public static boolean updateData(List<BaseDataEntity> list) {
+    public static boolean updateData(List<DistributorEntity> list) {
         if (null == list || list.size() <= 0) {
             return false;
         }
 
         boolean flag = false;
         try {
-            GreenDaoManager.getInstance().getNewSession().getBaseDataEntityDao().updateInTx(list);
+            GreenDaoManager.getInstance().getNewSession().getDistributorEntityDao().updateInTx(list);
             flag = true;
         } catch (Exception e) {
             LogUtil.v(TAG, e.toString());
@@ -149,8 +149,13 @@ public class BaseDataDaoManager {
      *
      * @return List集合
      */
-    public static BaseDataEntity queryDataFormId(long id) {
-        return GreenDaoManager.getInstance().getNewSession().getBaseDataEntityDao().queryBuilder().where(BaseDataEntityDao.Properties.Id.eq(id)).unique();
+    public static DistributorEntity queryDataFormId(long id) {
+        return GreenDaoManager.getInstance()
+                .getNewSession()
+                .getDistributorEntityDao()
+                .queryBuilder()
+                .where(DistributorEntityDao.Properties.Id.eq(id))
+                .unique();
     }
 
 
@@ -159,7 +164,12 @@ public class BaseDataDaoManager {
      *
      * @return List集合
      */
-    public static List<BaseDataEntity> queryAllFromAsc() {
-        return GreenDaoManager.getInstance().getNewSession().getBaseDataEntityDao().queryBuilder().orderAsc(BaseDataEntityDao.Properties.Id).list();
+    public static List<DistributorEntity> queryAllFromAsc() {
+        return GreenDaoManager.getInstance()
+                .getNewSession()
+                .getDistributorEntityDao()
+                .queryBuilder()
+                .orderAsc(DistributorEntityDao.Properties.Id)
+                .list();
     }
 }

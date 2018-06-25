@@ -66,6 +66,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 mPresenter.baseDataDownload();
                 break;
             case R.id.back_btn://返回按钮
+                finish();
                 break;
         }
     }
